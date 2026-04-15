@@ -1,387 +1,118 @@
 # AVE Sentinel
 
-AVE Sentinel is an address-first multi-chain research and execution terminal built on AVE.
+[English](./README_EN.md)
 
-It is designed for fast, noisy, early-stage on-chain markets where traders need to answer one practical question quickly:
+AVE Sentinel 是一个基于 AVE 的地址优先多链研究与执行终端。
 
-**Given a contract address, is this worth doing, worth watching, or worth avoiding?**
+它面向高噪声、快节奏的早期链上市场，核心要解决的只有一个问题：
 
-AVE already provides the raw browsing layer for k-lines, holders, transactions, pairs, and risk reports.  
-AVE Sentinel does not try to rebuild a heavier version of those native views. It focuses on the decision layer:
+**给定一个合约地址，这个标的是值得做、值得继续看，还是应该回避？**
 
-- `SENTINEL-8` scoring
-- risk gates
-- evidence explanation
-- quote preparation
-- execution readiness
+AVE 已经提供了 K 线、持有人、交易记录、pair 和风险报告等原始浏览能力。  
+AVE Sentinel 不重复做一个更重的数据面板，而是专注在决策层：
 
-The same product logic is exposed through:
+- `SENTINEL-8` 评分
+- 风险门控
+- 证据解释
+- Quote 试算
+- 执行准备
 
-- Web workspace
-- Telegram query surface
-- CLI / Skill runtime
+## 项目截图
 
-## Table of Contents
+![AVE Sentinel Access Program](./docs/submission-assets/access-program.png)
 
-- [What AVE Sentinel Is](#what-ave-sentinel-is)
-- [Why It Exists](#why-it-exists)
-- [Core Product Thesis](#core-product-thesis)
-- [Current Capability Surface](#current-capability-surface)
-- [Entry Surfaces](#entry-surfaces)
-- [Main Workflow](#main-workflow)
-- [SENTINEL-8](#sentinel-8)
-- [Current Modules](#current-modules)
-- [Supported Chains](#supported-chains)
-- [Quick Start](#quick-start)
-- [Environment](#environment)
-- [Command Entry Points](#command-entry-points)
-- [Repository Structure](#repository-structure)
+上图展示的是当前公开版中的用户体系页面。  
+这个页面用于说明产品未来的准入机制、等级划分和权益差异，体现 AVE Sentinel 在研究与交易之外的产品扩展方向。
 
----
+## 核心定位
 
-## What AVE Sentinel Is
+- 地址优先：看到一个 CA，直接进入完整分析
+- 多链统一：覆盖 Solana、BSC、Base、Ethereum
+- 决策优先：重点展示评分、风险、证据和执行准备
+- 与 AVE 互补：AVE 提供基础浏览与交易能力，Sentinel 提供研究与判断层
 
-AVE Sentinel is a complete decision system for early-stage on-chain assets.
+## 当前工作流
 
-It is not:
-
-- just a trending board
-- just a token dashboard
-- just a wallet tracker
-- just a quote tool
-- just a trading bot
-
-It is a single workflow that connects:
-
-`address lookup -> score -> evidence -> risk gate -> quote / execution prep -> monitoring / replay`
-
----
-
-## Why It Exists
-
-In early-stage on-chain trading, the main problem is usually not missing data.  
-The real problem is fragmented judgement.
-
-Users often need to move across multiple tools to:
-
-- spot a candidate
-- inspect structure
-- check risk
-- understand wallet or signal context
-- prepare a quote
-- decide whether to act
-
-That fragmentation leads to:
-
-- slower judgement
-- later risk checks
-- broken execution flow
-- weak replay after the decision
-
-AVE Sentinel compresses those steps into one clearer path.
-
----
-
-## Core Product Thesis
-
-AVE Sentinel is complementary to AVE, not a replacement for it.
-
-The split is intentional:
-
-| Layer | AVE | AVE Sentinel |
-|---|---|---|
-| Raw browsing | k-lines, holders, transactions, pairs, risk reports | not the primary focus |
-| Decision logic | partial inputs and platform primitives | primary product focus |
-| Score model | no unified product-side decision layer | `SENTINEL-8` |
-| Risk gating | risk endpoints and warnings | action-level gating before execution |
-| Execution prep | quote / trade capabilities | decision-linked execution preparation |
-
-This is the product boundary:
-
-- AVE is the capability substrate
-- AVE Sentinel is the research-and-decision layer
-
----
-
-## Current Capability Surface
-
-The current workspace already supports:
-
-- direct contract-address lookup
-- Radar candidate discovery
-- `SENTINEL-8` score modeling
-- single-token evidence review
-- risk gating before action
-- official AVE quote preview
-- unsigned transaction preparation
-- chain-wallet and delegate-wallet execution paths
-- replay-friendly decision flow
-- Web / Telegram / CLI reuse of the same core
-
----
-
-## Entry Surfaces
-
-### 1. Web
-
-The primary workspace for:
-
-- full token analysis
-- score interpretation
-- risk review
-- quote preparation
-- execution readiness
-
-### 2. Telegram
-
-The lightweight mobile surface for:
-
-- quick token lookup
-- fast risk checks
-- quote queries
-- brief summaries
-
-### 3. CLI / Skill Runtime
-
-The structured runtime surface for:
-
-- natural-language agent use
-- scriptable workflows
-- JSON-based skill calls
-- future automation
-
----
-
-## Main Workflow
-
-AVE Sentinel is built around an address-first path.
-
-### Primary path
-
-1. Enter a contract address
-2. Generate a `SENTINEL-8` score
-3. Inspect the evidence page
-4. Apply risk gates
-5. Pull an official AVE quote
-6. Prepare execution
-7. Revisit the outcome
-
-### Alternate path
-
-Users can also start from Radar and then enter the same per-token workflow.
-
----
+1. 输入合约地址
+2. 生成 `SENTINEL-8` 分数
+3. 查看证据页
+4. 进入风险拦截
+5. 拉取 AVE 官方 Quote
+6. 做执行准备
 
 ## SENTINEL-8
 
-`SENTINEL-8` is the core decision model of AVE Sentinel.
+`SENTINEL-8` 是 AVE Sentinel 的核心评分模型，包含八个维度：
 
-It combines eight dimensions:
+- `L` 流动性深度
+- `V` 成交质量
+- `M` 动量
+- `A` 活跃度加速
+- `C` 持仓集中度
+- `R` 风险门面
+- `S` 信号质量
+- `F` 周期新鲜度
 
-- `L` Liquidity depth
-- `V` Volume quality
-- `M` Momentum
-- `A` Activity acceleration
-- `C` Holder concentration
-- `R` Risk posture
-- `S` Signal quality
-- `F` Freshness
-
-The model is not presented as a cosmetic score.  
-It is exposed as an inspectable product surface with:
-
-- factor values
-- weight contribution
-- risk multipliers
-- final score
-- verdict output
-
-Verdict is always emitted as:
-
-- `Actionable`
-- `Watch`
-- `Avoid`
-
-For the Chinese UI:
+最终输出三档结论：
 
 - `可做`
 - `观望`
 - `回避`
 
----
+## 三个入口
 
-## Current Modules
+### Web
 
-### Overview
+主工作台，负责：
 
-The product identity, workflow summary, and multi-entry orientation page.
+- 完整单币分析
+- 评分解释
+- 风险判断
+- Quote 准备
+- 执行准备
 
-### Radar
+### Telegram
 
-The multi-chain staging board for candidate discovery, filtering, and direct address lookup.
+轻量移动端入口，适合：
 
-### Score Model
+- 快速查币
+- 快速查风险
+- 快速做 Quote
+- 接收简报
 
-The dedicated `SENTINEL-8` page for factor breakdown, contribution, and risk-gate flow.
+### CLI / Skill Runtime
 
-### Token Dossier
+结构化运行时入口，适合：
 
-The focused evidence page.  
-It keeps only the fields needed for modelling and judgement, rather than replicating full AVE browsing surfaces.
+- 大模型自然语言调用
+- 脚本化工作流
+- JSON 结构化调用
 
-### Risk Guard
+## 论文
 
-The action gate that turns structure and contract evidence into execution constraints.
+- [查看论文 PDF](./paper/main.pdf)
 
-### Opportunity Desk
+论文说明了项目的研究背景、产品边界、评分模型设计，以及 AVE Sentinel 与 AVE 之间的互补关系。
 
-The execution-preparation surface for:
-
-- official AVE quote
-- route visibility
-- slippage and gas hints
-- unsigned transaction preparation
-- chain-wallet and delegate-wallet paths
-
-### Docs
-
-The in-product guide covering:
-
-- product positioning
-- workflow
-- scoring model
-- runtime usage
-- data-source rules
-
-### Access
-
-The user-tier and rollout layer for future quota, priority, and access-policy expansion.
-
----
-
-## Supported Chains
-
-Current product support:
-
-- Solana
-- BSC
-- Base
-- Ethereum
-
-The current thesis started from Solana and BSC, but the live workspace already operates across all four chains above.
-
----
-
-## Quick Start
-
-### Install
+## 快速启动
 
 ```bash
 npm install
-```
-
-### Start the local AVE proxy
-
-```bash
-npm run proxy
-```
-
-### Start the web app
-
-```bash
 npm run dev
 ```
 
-### Build
+## 环境变量
 
-```bash
-npm run build
-```
+参考：
 
----
+- `.env.example`
 
-## Environment
+运行项目至少需要配置：
 
-Copy `.env.example` to `.env`.
+- `VITE_AVE_API_KEY`
+- `AVE_API_SECRET`
 
-Minimum variables:
+## 说明
 
-```env
-VITE_AVE_API_KEY=your_key
-AVE_API_SECRET=your_secret
-```
-
-Notes:
-
-- Web reads `VITE_AVE_API_KEY`
-- proxy and delegate-wallet paths read `AVE_API_SECRET`
-- if `VITE_AVE_API_KEY` is missing, the web frontend falls back to mock / fallback data
-
-For browser use, keep the local proxy running so requests can bypass cross-origin restrictions:
-
-```bash
-npm run proxy
-```
-
----
-
-## Command Entry Points
-
-### CLI
-
-```bash
-npm run cli -- help
-npm run cli -- radar
-npm run cli -- brief
-npm run cli -- token <address> --chain solana
-npm run cli -- risk <address> --chain bsc
-npm run cli -- quote <address> --chain solana --usd 500
-```
-
-### Skill Runtime
-
-```bash
-npm run skill -- list
-npm run skill -- schema radar_scan
-npm run skill -- call radar_scan --input-json '{"chains":["solana","bsc"],"limit":10}'
-npm run skill -- call trade_quote --input-json '{"chain":"solana","tokenAddress":"<token>","side":"buy","amount":0.1}'
-```
-
-### Telegram command entry
-
-```bash
-npm run tg -- "/radar"
-npm run tg -- "/brief"
-npm run tg -- "/token <address> solana"
-npm run tg -- "/risk <address> bsc"
-npm run tg -- "/quote <address> solana 500"
-```
-
----
-
-## Repository Structure
-
-```text
-src/                    React web app
-src/lib/                AVE data, trade, wallet, and runtime logic
-src/components/         UI modules
-scripts/                proxy, CLI, Telegram, and skill runtime entry points
-skills/                 structured skill definitions
-test/claude-skill-bundle/  Claude / agent test bundle
-```
-
----
-
-## Recommended Read Order
-
-If you are new to the project:
-
-1. Read this README
-2. Try the Web workspace
-3. Try the Skill runtime from CLI
-
----
-
-## One-Line Summary
-
-**One address in. Score, risk, evidence, and execution readiness out.**
+GitHub 公开版本只保留核心 README、英文备选说明、展示截图与论文 PDF。  
+更完整的内部文档、提交材料和扩展说明保留在本地工作仓库中，不在公开仓库展开。
