@@ -1,0 +1,31 @@
+{
+  "name": "ave-sentinel",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "proxy": "node scripts/ave_proxy.mjs",
+    "cli": "node scripts/sentinel_cli.mjs",
+    "skill": "node scripts/ave_sentinel_skill.mjs",
+    "tg": "node scripts/sentinel_tg.mjs",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@privy-io/react-auth": "2.13.7",
+    "@solana/spl-token": "^0.4.14",
+    "@solana/web3.js": "^1.98.4",
+    "buffer": "^6.0.3",
+    "ethers": "^6.16.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "typescript": "^5.8.3",
+    "vite": "^5.4.8"
+  }
+}

@@ -1,0 +1,17 @@
+node_modules
+dist
+.DS_Store
+.env
+.sentinel_tg_state.json
+.claude-plugin
+.cursor-plugin
+*.tsbuildinfo
+tmp_*.png
+AVE_Sentinel_Project_Documentation.pdf
+PROJECT_DOCUMENTATION_PDF.html
+paper/*.aux
+paper/*.fdb_latexmk
+paper/*.fls
+paper/*.log
+paper/*.out
+paper/*.xdv

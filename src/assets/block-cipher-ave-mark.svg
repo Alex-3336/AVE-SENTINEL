@@ -1,0 +1,26 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sentinel-left" x1="20" y1="74" x2="46" y2="18" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#16A085"/>
+      <stop offset="1" stop-color="#2DD4BF"/>
+    </linearGradient>
+    <linearGradient id="sentinel-right" x1="48" y1="16" x2="76" y2="72" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5B7CFA"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="sentinel-core" x1="28" y1="68" x2="63" y2="44" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#2563EB"/>
+    </linearGradient>
+  </defs>
+  <path d="M21.5 48.1 36.3 21.6H57.8L76.4 48.1 63.6 73.6H32.4L21.5 48.1Z" fill="#0B111B"/>
+  <path d="M21.5 48.1 36.3 21.6H49.1L32.4 73.6 21.5 48.1Z" fill="url(#sentinel-left)"/>
+  <path d="M49.1 21.6H57.8L76.4 48.1 63.6 73.6 49.1 21.6Z" fill="url(#sentinel-right)"/>
+  <path d="M32.4 73.6 45.9 52.5 63.6 73.6H32.4Z" fill="url(#sentinel-core)"/>
+  <path d="M34.7 64.5 46 57.5 59.3 64.5" stroke="#8BE9DD" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M21.5 48.1 36.3 21.6H57.8L76.4 48.1 63.6 73.6H32.4L21.5 48.1Z" stroke="#182234" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M49 22 32.4 73.4" stroke="#101827" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M49 22 63.6 73.4" stroke="#101827" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="73" cy="22" r="4.5" fill="#D9F99D"/>
+  <path d="M73 14.5V10M73 34v-4.5M80.5 22H85M61 22h4.5" stroke="#D9F99D" stroke-width="2" stroke-linecap="round"/>
+</svg>

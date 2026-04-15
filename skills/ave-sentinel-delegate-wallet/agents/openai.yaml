@@ -1,0 +1,7 @@
+interface:
+  display_name: "AVE SENTINEL Delegate Wallet"
+  short_description: "List wallets, create wallets, place orders, and poll order status as structured JSON"
+  default_prompt: "Use $ave-sentinel-delegate-wallet for server-managed execution when the user wants delegate wallet, assetsId flows, market orders, limit orders, bot-managed trading, or order status checks. Inspect schema first, then call the matching runtime operation and carry assetsId and orderId forward."
+
+policy:
+  allow_implicit_invocation: false

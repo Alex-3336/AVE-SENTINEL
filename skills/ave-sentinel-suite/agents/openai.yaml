@@ -1,0 +1,7 @@
+interface:
+  display_name: "AVE SENTINEL Suite"
+  short_description: "Default natural-language router for token checks, risk, quote, trading, delegate wallet, and order status"
+  default_prompt: "Use $ave-sentinel-suite as the default AVE SENTINEL entrypoint whenever the user naturally says things like 帮我看看这个 token, 帮我看这个 CA, 这个币安全吗, 帮我查风险, 看看聪明钱, 给我做个买入 quote, 帮我买这个币, 帮我卖掉, 帮我挂限价单, 用 delegate wallet 下单, 查一下我的订单, 用我的钱包签名, build unsigned tx, sign locally, or check order status. Detect intent from natural language, inspect the schema of the chosen operation, call the structured runtime, and chain the next step automatically when the workflow is obvious. For broad execution requests, prefer delegate wallet unless self-custody, local signing, private key, mnemonic, unsigned tx, or external signer is explicit."
+
+policy:
+  allow_implicit_invocation: true

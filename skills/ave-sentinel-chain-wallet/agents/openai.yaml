@@ -1,0 +1,7 @@
+interface:
+  display_name: "AVE SENTINEL Chain Wallet"
+  short_description: "Quote, build, send, and check self-custody trades as structured JSON"
+  default_prompt: "Use $ave-sentinel-chain-wallet when the user explicitly wants self-custody, local signing, private-key or mnemonic use, unsigned transaction build, external signer workflow, or sending a pre-signed transaction. Inspect schema first and never skip the unsigned build step before send."
+
+policy:
+  allow_implicit_invocation: false

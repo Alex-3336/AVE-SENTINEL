@@ -1,0 +1,7 @@
+interface:
+  display_name: "AVE SENTINEL Data"
+  short_description: "Radar, dossier, risk, wallet intel, and smart-signal lookup as structured JSON"
+  default_prompt: "Use $ave-sentinel-data only when the route is already clearly read-only and data-focused, such as token dossier, risk check, wallet intel, public signal lookup, or radar scan. Inspect schema first, then call the matching structured runtime operation."
+
+policy:
+  allow_implicit_invocation: false
